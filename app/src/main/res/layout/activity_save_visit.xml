@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/enreg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <!--Fleche retour-->
+            <ImageView
+                android:id="@+id/fleche"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="@dimen/T30"
+                android:layout_marginTop="@dimen/T30"
+                android:src="@drawable/arrow_green" />
+            <!-- profile -->
+
+            <ImageView
+                android:id="@+id/enreg_profil"
+                android:layout_width="113dp"
+                android:layout_height="113dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="100dp"
+                android:layout_marginTop="50dp"
+                android:layout_marginEnd="100dp"
+                android:src="@drawable/user_profile" />
+
+            <TextView
+                android:id="@+id/create_an_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="196dp"
+                android:layout_marginEnd="150dp"
+                android:text="@string/create_account_string"
+                android:textColor="@color/color_green"
+                android:textSize="20sp" />
+            <!-- Box ID -->
+            <LinearLayout
+                android:id="@+id/box_for_enregistrement"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/create_an_account"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentEnd="true"
+                android:layout_marginStart="30dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="30dp"
+                android:orientation="vertical">
+                <!-- box 1-->
+                <EditText
+                    android:id="@+id/nom"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/nom_string" />
+                <!-- box 2-->
+                <EditText
+                    android:id="@+id/prenom"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:layout_marginTop="@dimen/T10"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/prenom_string" />
+                <!-- box 3-->
+                <EditText
+                    android:id="@+id/email"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:layout_marginTop="@dimen/T10"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/mail_string" />
+                <!-- box 4-->
+                <EditText
+                    android:id="@+id/numero"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:layout_marginTop="@dimen/T10"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/num_string" />
+                <!-- box 5-->
+                <EditText
+                    android:id="@+id/sexe"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:layout_marginTop="@dimen/T10"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/sexe_string" />
+                <!-- box 6-->
+                <EditText
+                    android:id="@+id/motif"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:layout_marginTop="@dimen/T10"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/motif_string" />
+                <!-- box 7-->
+                <EditText
+                    android:id="@+id/card"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:padding="@dimen/T5"
+                    android:layout_marginTop="@dimen/T10"
+                    android:background="@drawable/border_green"
+                    android:hint="@string/carte_string" />
+
+            </LinearLayout>
+
+            <!-- Box des boutons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentBottom="true"
+                android:layout_marginTop="580dp"
+                android:layout_marginBottom="80dp"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/button_annuler"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:background="@drawable/ic_annule"
+                        android:gravity="center">
+
+                    </ImageButton>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Annuler_string" />
+
+                </LinearLayout>
+
+                <LinearLayout
+
+                    android:layout_width="50dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="@dimen/T20"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageButton
+                        android:id="@+id/button_valider"
+                        android:layout_width="36dp"
+                        android:layout_height="36dp"
+                        android:background="@drawable/ic_valider"
+                        android:gravity="center"
+                        android:padding="20dp">
+
+                    </ImageButton>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/valider_string" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+
+
+
+
+</RelativeLayout>

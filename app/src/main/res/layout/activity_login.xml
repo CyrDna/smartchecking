@@ -1,0 +1,108 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:background="@color/colorPrimary"
+	android:layout_centerInParent="true"
+	android:orientation="vertical"
+	android:padding="16dp">
+	<!--// Snap-clic-->
+	<LinearLayout
+		android:id="@+id/bloc_logo"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:orientation="vertical"
+		android:gravity="center">
+		<!--//Smartcheking-->
+		<ImageView
+			android:id="@+id/logo_smart_cheking"
+			android:layout_width="150dp"
+			android:layout_height="150dp"
+			android:src="@drawable/neg_logo_smart_cheking" />
+		<TextView
+			android:id="@+id/sign_title"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="@dimen/T10"
+			android:text="@string/sign_title_string"
+			android:textColor="@color/couleur_blanc"
+			android:textSize="30sp"
+			android:textStyle="bold"
+			/>
+		<TextView
+			android:id="@+id/sign_title_1"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginBottom="@dimen/T10"
+			android:text="@string/sign_title_1_string"
+			android:textColor="@color/couleur_blanc"
+			android:textSize="16sp" />
+	</LinearLayout>
+	<!--// Se connecter-->
+	<LinearLayout
+		android:id="@+id/sign_bloc_rectangle"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:background="@drawable/bloc_sign_in"
+		android:orientation="vertical"
+		android:layout_marginStart="@dimen/T20"
+		android:layout_marginEnd="@dimen/T20"
+		android:gravity="center"
+		android:paddingBottom="@dimen/T20"
+		android:paddingTop="@dimen/T20">
+		<TextView
+			android:layout_width="150dp"
+			android:layout_height="wrap_content"
+			android:layout_gravity="center_horizontal|center"
+			android:layout_marginTop="10dp"
+			android:text="@string/create_an_account_string"
+			android:textColor="@color/color_green"
+			android:textSize="20sp" />
+		<EditText
+			android:id="@+id/email"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginStart="@dimen/T15"
+			android:layout_marginTop="@dimen/T10"
+			android:layout_marginEnd="@dimen/T15"
+			android:background="@drawable/border_green"
+			android:hint="@string/email_string"
+			android:inputType="textEmailAddress"
+			android:padding="@dimen/T15" />
+
+		<EditText
+			android:id="@+id/password"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginStart="@dimen/T15"
+			android:layout_marginTop="@dimen/T10"
+			android:layout_marginEnd="@dimen/T15"
+			android:background="@drawable/border_green"
+			android:hint="@string/password_string"
+			android:inputType="textPassword"
+			android:padding="@dimen/T15" />
+		<!---->
+		<Button
+			android:id="@+id/connect"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="@dimen/T10"
+			android:background="@drawable/connect"
+			android:paddingStart="@dimen/T35"
+			android:paddingEnd="@dimen/T35"
+			android:text="@string/continue_string"
+			android:textAllCaps="false"
+			android:textColor="@color/color_blanc"
+			android:textSize="12sp" />
+	</LinearLayout>
+
+	<TextView
+		android:id="@+id/politique_string"
+		android:layout_width="match_parent"
+		android:layout_height="match_parent"
+		android:layout_marginStart="@dimen/T20"
+		android:layout_marginEnd="@dimen/T20"
+		android:gravity="center"
+		android:text="@string/politique_string"
+		android:textColor="@color/color_blanc" />
+
+</LinearLayout>

@@ -1,0 +1,217 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/color_green">
+    <!--    Profile-->
+    <ImageView
+        android:id="@+id/saving_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:src="@drawable/ic_arrow"
+        android:layout_margin="@dimen/T10"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/user_profile"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:elevation="2dp"
+        android:layout_marginBottom="-30dp"
+        android:src="@drawable/user_profile"
+        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/rectangle_blanc"
+        android:paddingTop="35dp"
+        android:paddingBottom="35dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <!-- Nom d utilisateur-->
+        <TextView
+            android:id="@+id/user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/T20"
+            android:layout_marginTop="15dp"
+            android:text="@string/user_string"
+            android:textColor="@color/user_string_color"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <!--  Status du profile-->
+        <TextView
+            android:id="@+id/user_statut"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/T20"
+            android:text="@string/status_string"
+            android:textColor="@color/couleur_vert"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+        <ImageView
+            android:id="@+id/barre"
+            android:layout_width="230dp"
+            android:layout_height="1dp"
+            android:layout_gravity="center"
+            android:layout_margin="15dp"
+            android:layout_marginTop="20dp"
+            android:src="@drawable/ligne"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/user_statut" />
+
+        <ImageView
+            android:id="@+id/icon_enter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/T20"
+            android:layout_marginTop="25dp"
+            android:src="@drawable/i_metro_enter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/barre" />
+
+        <TextView
+            android:id="@+id/motif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/icon_enter"
+            android:textColor="@color/color_gris"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/icon_enter"
+            app:layout_constraintStart_toEndOf="@+id/icon_enter"
+            app:layout_constraintTop_toTopOf="@+id/icon_enter" />
+
+        <!-- icon personne  -->
+        <!-- Personne 1  -->
+        <!-- Personne 1  -->
+        <!-- icon batiment -->
+
+        <TextView
+            android:id="@+id/motif_desc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_enter_01"
+            android:textColor="@color/mobile_color"
+            app:layout_constraintStart_toStartOf="@+id/motif"
+            app:layout_constraintTop_toBottomOf="@+id/motif" />
+
+        <ImageView
+            android:id="@+id/saving_icon_card"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/T20"
+            android:layout_marginTop="@dimen/T35"
+            android:src="@drawable/i_address_card"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/icon_enter" />
+
+        <TextView
+            android:id="@+id/user_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/icon_passe"
+            android:textColor="@color/color_gris"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/saving_icon_card"
+            app:layout_constraintStart_toEndOf="@+id/saving_icon_card"
+            app:layout_constraintTop_toTopOf="@+id/saving_icon_card" />
+
+        <TextView
+            android:id="@+id/saving_icon_card_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_passe_01"
+            android:textColor="@color/mobile_color"
+            app:layout_constraintStart_toStartOf="@+id/user_id"
+            app:layout_constraintTop_toBottomOf="@+id/user_id" />
+
+        <ImageView
+            android:id="@+id/saving_icon_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/T20"
+            android:layout_marginTop="@dimen/T35"
+            android:src="@drawable/i_people"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/saving_icon_card" />
+
+        <TextView
+            android:id="@+id/s_people"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/icon_people"
+            android:textColor="@color/color_gris"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/saving_icon_people"
+            app:layout_constraintStart_toEndOf="@+id/saving_icon_people"
+            app:layout_constraintTop_toTopOf="@+id/saving_icon_people" />
+
+        <TextView
+            android:id="@+id/saving_icon_people_2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_people_01"
+            android:textColor="@color/mobile_color"
+            app:layout_constraintStart_toStartOf="@+id/s_people"
+            app:layout_constraintTop_toBottomOf="@+id/s_people" />
+
+        <ImageView
+            android:id="@+id/saving_i_building"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/T20"
+            android:layout_marginTop="@dimen/T35"
+            android:src="@drawable/i_building"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/saving_icon_people" />
+
+        <TextView
+            android:id="@+id/s_building"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="30dp"
+            android:text="@string/icon_building"
+            android:textColor="@color/color_gris"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/saving_i_building"
+            app:layout_constraintStart_toEndOf="@+id/saving_i_building"
+            app:layout_constraintTop_toTopOf="@+id/saving_i_building" />
+
+        <TextView
+            android:id="@+id/building"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/icon_building_01"
+            android:textColor="@color/mobile_color"
+            app:layout_constraintStart_toStartOf="@+id/s_building"
+            app:layout_constraintTop_toBottomOf="@+id/s_building" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<color name="colorPrimary">#0CC17C</color>
+	<color name="colorPrimaryDark">#00574B</color>
+	<color name="colorAccent">#D81B60</color>
+	<color name="purple_200">#FFBB86FC</color>
+	<color name="purple_500">#FF6200EE</color>
+	<color name="purple_700">#FF3700B3</color>
+	<color name="teal_200">#FF03DAC5</color>
+	<color name="teal_700">#FF018786</color>
+	<color name="black">#FF000000</color>
+	<color name="white">#FFFFFFFF</color>
+	<color name="bg">#05FFFFFF</color>
+	<color name="green_sombre">#000000</color>
+	<color name="couleur_vert">#0CC17C</color>
+	<color name="color_green">#0CC17C</color>
+	<color name="couleur_blanc">#FFFFFF</color>
+	<color name="color_blanc">#FFFFFF</color>
+	<color name="user_string_color">#000000</color>
+	<color name="color_gris">#343434</color>
+	<color name="mobile_color">#B4B4B4</color>
+	<color name="rectangle_68_color">#ffffff</color>
+	<!-- accueil_ colors -->
+	<color name="_bg__accueil__ek2_color">#FFFFFF</color>
+	<color name="_11___00_color">#060606</color>
+	<color name="employ__color">#03A9F4</color>
+	<color name="pas_d_id_color">#343434</color>
+	<color name="search_string">#B8B8B8</color>
+	<color name="bounds_ek1_color">#ffffff</color>
+	<color name="s_lectioner_color">#3E3E3E</color>
+	<color name="degrader">#E6D4D4</color>
+	<color name="grisatre">#BDBCBC</color>
+	<color name="_bg__settings_ek2_color">#FFFFFF</color>
+	<color name="color_vert_fonce">#000000</color>
+	<color name="rectangle_color">#0CC17C</color>
+	<color name="arrowx_color">#ffffff</color>
+	<color name="_bg__enregistrement_manuel_ek2_color">#FAFAFA</color>
+	<color name="rectangle_107_color">#FFFFFF</color>
+	<color name="john_doe_color">#C6C6C6</color>
+	<color name="cercle_rouge_color">#F52626</color>
+	<color name="annuler_color">#343434</color>
+
+
+
+</resources>

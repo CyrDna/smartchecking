@@ -1,0 +1,206 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <!-- Barre de navigation -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/toolbar_box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            style="@style/Widget.MaterialComponents.Toolbar.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/settings_string"
+            app:titleCentered="true">
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <ImageButton
+        android:id="@+id/saving_retour"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:background="@color/color_green"
+        android:layout_margin="@dimen/T25"
+        android:src="@drawable/ic_green_arrow" />
+
+    <!-- Bloc d'image  -->
+    <RelativeLayout
+        android:id="@+id/bloc_param_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="-40dp"
+        android:layout_below="@+id/toolbar_box">
+        <ImageView
+            android:id="@+id/param_profile"
+            android:src="@drawable/bloc_param_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    <!-- Bloc des autres contenu-->
+    <RelativeLayout
+        android:id="@+id/bloc_paramater"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="@dimen/T40"
+        android:layout_marginEnd="@dimen/T40"
+        android:paddingBottom="@dimen/T40"
+        android:elevation="2dp"
+        android:layout_below="@+id/bloc_param_profile"
+        android:background="@drawable/bloc_paramater_shape">
+        <!-- Nom + Statut -->
+        <LinearLayout
+            android:id="@+id/set_profil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="@dimen/T30"
+            android:layout_marginTop="@dimen/T30"
+            android:layout_marginEnd="40dp"
+            android:layout_toStartOf="@+id/bouton_modif"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/set_user"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/user_set_string"
+                android:textColor="@color/color_vert_fonce"
+                android:textSize="20sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/set_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/statut_set_string"
+                android:textColor="@color/rectangle_color"
+                android:textSize="14sp" />
+        </LinearLayout>
+        <!-- Bouton  modifier-->
+
+        <Button
+            android:id="@+id/bouton_modif"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/modif_shape"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:text="@string/edit_string"
+            android:textSize="15sp"
+            android:padding="@dimen/T5"
+            android:textAllCaps="false"
+            android:textColor="@color/color_blanc"
+            android:layout_marginEnd="@dimen/T20"
+            android:layout_marginTop="@dimen/T20" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/set_profil"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginStart="@dimen/T10"
+            android:layout_marginTop="@dimen/T10"
+            android:orientation="vertical">
+            <!--Notification and icon-->
+            <LinearLayout
+                android:id="@+id/box_notifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/iconbell" />
+                <!--Notification-->
+                <TextView
+                    android:id="@+id/notifications"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/T10"
+                    android:text="@string/notifications_string"
+                    android:textColor="@color/color_vert_fonce"
+                    />
+            </LinearLayout>
+            <!-- Generale and icon -->
+            <LinearLayout
+                android:id="@+id/box_general"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/T10"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/iconset" />
+                <!-- Generale-->
+                <TextView
+                    android:id="@+id/general"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/T10"
+                    android:text="@string/general_string"
+                    android:textColor="@color/color_vert_fonce" />
+
+            </LinearLayout>
+            <!-- Account and icon -->
+            <LinearLayout
+                android:id="@+id/box_account"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/T10"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/iconpers" />
+                <!-- Account-->
+                <TextView
+                    android:id="@+id/account"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/T10"
+                    android:text="@string/account_string"
+                    android:textColor="@color/color_vert_fonce" />
+
+            </LinearLayout>
+            <!-- Help and icon -->
+            <LinearLayout
+                android:id="@+id/box_help"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/T10"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/iconhelp" />
+                <!-- Account-->
+                <TextView
+                    android:id="@+id/help"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/T10"
+                    android:text="@string/help_string"
+                    android:textColor="@color/color_vert_fonce" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

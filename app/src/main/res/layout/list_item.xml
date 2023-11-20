@@ -1,0 +1,213 @@
+<!-- recycler_item_layout.xml -->
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:layout_margin="15dp">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/box"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginStart="@dimen/T20"
+        android:layout_marginEnd="@dimen/T20"
+        app:cardElevation="@dimen/T10">
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp">
+
+            <ImageView
+                android:id="@+id/user_parameter"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:src="@drawable/ic_parametre"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/user_profile"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:src="@drawable/user_profile"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/user_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/alfred_kouassi_string"
+                android:textColor="@color/green_sombre"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_profile"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/user_statut"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/visiteur_string"
+                android:textColor="@color/color_green"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_profile"
+                app:layout_constraintTop_toBottomOf="@+id/user_name" />
+
+            <TextView
+                android:id="@+id/user_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/enter_string"
+                android:textColor="@color/color_gris"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_profile"
+                app:layout_constraintTop_toBottomOf="@+id/user_statut" />
+
+            <TextView
+                android:id="@+id/user_scan"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/manuel_string"
+                android:textColor="@color/color_gris"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_type"
+                app:layout_constraintStart_toEndOf="@+id/user_type"
+                app:layout_constraintTop_toTopOf="@+id/user_type" />
+
+            <TextView
+                android:id="@+id/user_motif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/motif"
+                android:textColor="@color/color_gris"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/user_profile"
+                app:layout_constraintTop_toBottomOf="@+id/user_type" />
+
+            <TextView
+                android:id="@+id/motif"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="4dp"
+                android:text="@string/visite_string"
+                android:textColor="@color/color_gris"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="@+id/user_motif"
+                app:layout_constraintStart_toEndOf="@+id/user_motif"
+                app:layout_constraintTop_toTopOf="@+id/user_motif" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="-10dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/T5"
+            android:paddingEnd="@dimen/T5"
+            android:paddingTop="@dimen/T10"
+            android:paddingBottom="2dp">
+            <TextView
+                android:id="@+id/user_id"
+                android:layout_width="wrap_content"
+                android:layout_height="15dp"
+                android:text="@string/id_string"
+                android:textColor="@color/color_gris"
+                android:textSize="11sp"
+                android:textStyle="bold"
+                android:layout_marginStart="5dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/icon_vert"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:layout_marginStart="10dp"
+                android:src="@drawable/i_metro_enter"
+                app:layout_constraintBottom_toBottomOf="@+id/user_id"
+                app:layout_constraintStart_toEndOf="@+id/user_id"
+                app:layout_constraintTop_toTopOf="@+id/user_id" />
+
+            <TextView
+                android:id="@+id/green_time"
+                android:layout_width="50dp"
+                android:layout_height="15dp"
+                android:text="@string/come_time"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@color/green_sombre"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_vert"
+                app:layout_constraintStart_toEndOf="@+id/icon_vert"
+                app:layout_constraintTop_toTopOf="@+id/icon_vert" />
+
+            <ImageView
+                android:id="@+id/icon_rouge"
+                android:layout_width="20dp"
+                android:layout_height="15dp"
+                android:src="@drawable/i_metro_exit"
+                app:layout_constraintBottom_toBottomOf="@+id/green_time"
+                app:layout_constraintStart_toEndOf="@+id/green_time"
+                app:layout_constraintTop_toTopOf="@+id/green_time" />
+
+            <TextView
+                android:id="@+id/red_time"
+                android:layout_width="50dp"
+                android:layout_height="15dp"
+                android:text="@string/out_time"
+                android:textSize="12sp"
+                android:gravity="center"
+                android:textColor="@color/green_sombre"
+                app:layout_constraintBottom_toBottomOf="@+id/icon_rouge"
+                app:layout_constraintStart_toEndOf="@+id/icon_rouge"
+                app:layout_constraintTop_toTopOf="@+id/icon_rouge" />
+
+            <TextView
+                android:id="@+id/user_entre"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
+                android:text="@string/come_string"
+                android:textSize="12sp"
+                android:textColor="@color/color_gris"
+                app:layout_constraintStart_toStartOf="@+id/icon_vert"
+                app:layout_constraintTop_toBottomOf="@+id/icon_vert" />
+
+            <TextView
+                android:id="@+id/user_sortie"
+                android:layout_width="35dp"
+                android:layout_height="20dp"
+                android:text="@string/out_string"
+                android:textSize="12sp"
+                android:textColor="@color/color_gris"
+                app:layout_constraintStart_toStartOf="@+id/icon_rouge"
+                app:layout_constraintTop_toBottomOf="@+id/icon_rouge" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</LinearLayout>

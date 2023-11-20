@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="medium_margin"> 20dp</dimen>
+    <dimen name="icon_add_text">10dp</dimen>
+    <dimen name="T5">5dp</dimen>
+    <dimen name="T10">10dp</dimen>
+    <dimen name="T15">15dp</dimen>
+    <dimen name="T20">20dp</dimen>
+    <dimen name="T25">25dp</dimen>
+    <dimen name="T30">30dp</dimen>
+    <dimen name="T35">35dp</dimen>
+    <dimen name="T40">40dp</dimen>
+    <dimen name="T50">50dp</dimen>
+    <dimen name="T55">55dp</dimen>
+    <dimen name="T60">60dp</dimen>
+
+    </resources>
