@@ -39,7 +39,8 @@
 	<color name="john_doe_color">#C6C6C6</color>
 	<color name="cercle_rouge_color">#F52626</color>
 	<color name="annuler_color">#343434</color>
-
+	<color name="selected">#00994B</color>
+	<color name="normal">#FFFFFF</color>
 
 
 </resources>

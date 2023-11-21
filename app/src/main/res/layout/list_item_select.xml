@@ -1,51 +1,50 @@
-<!-- recycler_item_layout.xml -->
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="horizontal">
-
-    <CheckBox
-        android:id="@+id/checkbox"
-        android:visibility="gone"
-        android:buttonTint="@color/color_blanc"
+    android:background="@drawable/bg_selector"
+    android:descendantFocusability="blocksDescendants"
+    android:padding="-10dp">
+    <!-- recycler_item_layout.xml -->
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="wrap_content"
-        android:layout_height="match_parent">
-
-    </CheckBox>
-    <LinearLayout
-        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:gravity="center">
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="10dp">
+
+        <CheckBox
+            android:id="@+id/checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:clickable="false"
+            android:focusable="false"
+            android:layout_margin="5dp"
+            android:focusableInTouchMode="false"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/box"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.cardview.widget.CardView
             android:id="@+id/box"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="10dp"
-            android:layout_marginStart="@dimen/T20"
-            android:layout_marginEnd="@dimen/T20"
-            app:cardElevation="@dimen/T10">
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingStart="15dp"
-                android:paddingEnd="15dp"
-                android:paddingTop="5dp"
-                android:paddingBottom="5dp">
+            app:cardElevation="@dimen/T10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-                <ImageView
-                    android:id="@+id/user_parameter"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="15dp"
-                    android:src="@drawable/ic_parametre"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingStart="40dp"
+                android:paddingTop="5dp"
+                android:paddingEnd="40dp"
+                android:paddingBottom="5dp">
 
                 <ImageView
                     android:id="@+id/user_profile"
@@ -130,28 +129,32 @@
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="-10dp"
             app:cardCornerRadius="10dp"
-            android:layout_marginTop="-10dp">
+            app:layout_constraintEnd_toEndOf="@+id/box"
+            app:layout_constraintTop_toBottomOf="@+id/box">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:paddingStart="@dimen/T5"
-                android:paddingEnd="@dimen/T5"
+                android:paddingStart="25dp"
                 android:paddingTop="@dimen/T10"
+                android:paddingEnd="25dp"
                 android:paddingBottom="2dp">
+
                 <TextView
                     android:id="@+id/user_id"
                     android:layout_width="wrap_content"
                     android:layout_height="15dp"
+                    android:layout_marginStart="5dp"
                     android:text="@string/id_string"
                     android:textColor="@color/color_gris"
                     android:textSize="11sp"
                     android:textStyle="bold"
-                    android:layout_marginStart="5dp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -169,10 +172,10 @@
                     android:id="@+id/green_time"
                     android:layout_width="50dp"
                     android:layout_height="15dp"
-                    android:text="@string/come_time"
-                    android:textSize="12sp"
                     android:gravity="center"
+                    android:text="@string/come_time"
                     android:textColor="@color/green_sombre"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/icon_vert"
                     app:layout_constraintStart_toEndOf="@+id/icon_vert"
                     app:layout_constraintTop_toTopOf="@+id/icon_vert" />
@@ -190,10 +193,10 @@
                     android:id="@+id/red_time"
                     android:layout_width="50dp"
                     android:layout_height="15dp"
-                    android:text="@string/out_time"
-                    android:textSize="12sp"
                     android:gravity="center"
+                    android:text="@string/out_time"
                     android:textColor="@color/green_sombre"
+                    android:textSize="12sp"
                     app:layout_constraintBottom_toBottomOf="@+id/icon_rouge"
                     app:layout_constraintStart_toEndOf="@+id/icon_rouge"
                     app:layout_constraintTop_toTopOf="@+id/icon_rouge" />
@@ -203,8 +206,8 @@
                     android:layout_width="35dp"
                     android:layout_height="20dp"
                     android:text="@string/come_string"
-                    android:textSize="12sp"
                     android:textColor="@color/color_gris"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/icon_vert"
                     app:layout_constraintTop_toBottomOf="@+id/icon_vert" />
 
@@ -213,8 +216,8 @@
                     android:layout_width="35dp"
                     android:layout_height="20dp"
                     android:text="@string/out_string"
-                    android:textSize="12sp"
                     android:textColor="@color/color_gris"
+                    android:textSize="12sp"
                     app:layout_constraintStart_toStartOf="@+id/icon_rouge"
                     app:layout_constraintTop_toBottomOf="@+id/icon_rouge" />
 
@@ -222,8 +225,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
-    </LinearLayout>
 
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</LinearLayout>
+</RelativeLayout>
