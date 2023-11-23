@@ -1,116 +1,88 @@
 package com.cyr.smartchecking;
 
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import android.view.ActionMode;
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     RecyclerView recyclerView;
-    Adapter adapter;
+    private Adapter adapter;
+    private List<Person> personList;
+
+    private ActionMode actionMode;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main); // Make sure activity_main.xml exists and contains a RecyclerView with the ID 'recycler'
+        setContentView(R.layout.activity_main);
+
         recyclerView = findViewById(R.id.recycler);
-
-        String[] name ={
-                "Pierre",
-                "Behanzin",
-                "Cyriaque",
-                "Aspartic ",
-                "Elodie",
-                "Glutamic ",
-                "Gildas",
-        };
-        String[] status = {
-                "Etudiant",
-                "Etudiant",
-                "Etudiant",
-                "Etudiant",
-                "Etudiant",
-                "Etudiant",
-                "Etudiant",
-        };
-        String[] scan = {
-                "Manuel",
-                "Manuel",
-                "Manuel",
-                "Manuel",
-                "Manuel",
-                "Manuel",
-                "Manuel",
-        };
-        String[] motif = {
-                "Visite",
-                "Visite",
-                "Visite",
-                "Etudes",
-                "Etudes",
-                "Etudes",
-                "Etudes",
-        };
-        String[] carte = {
-                "CNI",
-                "CNI",
-                "CNI",
-                "CNI",
-                "CNI",
-                "CNI",
-                "CNI",
-        };
-        String[] hentre = {
-                "9h",
-                "9h",
-                "9h",
-                "9h",
-                "9h",
-                "9h",
-                "9h",
-        };
-        String[] hsortie = {
-                "19h",
-                "19h",
-                "19h",
-                "19h",
-                "19h",
-                "19h",
-                "19h",
-        };
-        int[] photo = {
-                R.drawable.user_profile,
-                R.drawable.user_profile,
-                R.drawable.user_profile,
-                R.drawable.user_profile,
-                R.drawable.annuler,
-                R.drawable.annuler,
-                R.drawable.annuler,
-        };
-
-
-        String[] nbrpersonne ={
-                "1",
-                "1",
-                "1",
-                "3",
-                "5",
-                "7",
-                "9",
-        };
-        String[] taffs ={
-                "CERCO",
-                "CERCO",
-                "CERCO",
-                "CERCO",
-                "CERCO",
-                "CERCO",
-                "CERCO",
-        };
-
-        adapter = new Adapter(this, name, status, scan, motif, carte, hentre, hsortie, photo, nbrpersonne, taffs);
+        personList = generatePersonList();
+        adapter = new Adapter(this, personList);
         recyclerView.setAdapter(adapter);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 1)); // Set spanCount to 1 for a single column
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
+
+        adapter.setOnItemLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                if (actionMode == null) {
+                    actionMode = startActionMode(actionModeCallback);
+                    v.setSelected(true);
+                    adapter.notifyDataSetChanged();
+                }
+                return true;
+            }
+        });
     }
 
+    private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            MenuInflater inflater = mode.getMenuInflater();
+            inflater.inflate(R.menu.menu_selection, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+            return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+            if (item.getItemId() == R.id.supp_settings) {
+                deleteSelectedItems();
+                mode.finish();
+                return true;
+            }
+            return false;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            actionMode = null;
+            adapter.clearSelection();
+        }
+    };
+
+    private void deleteSelectedItems() {
+        adapter.deleteSelectedItems();
+    }
+
+    private List<Person> generatePersonList() {
+        List<Person> persons = new ArrayList<>();
+        persons.add(new Person("Pierre", "Etudiant", "Manuel", "Visite", "CNI", "9h", "19h", R.drawable.user_profile, "1", "CERCO"));
+        persons.add(new Person("Nom2", "Statut2", "Scan2", "Motif2", "Carte2", "HeureEntrée2", "HeureSortie2", R.drawable.user_profile, "NombrePersonne2", "Organisation2"));
+        // Ajoutez d'autres personnes ici...
+        return persons;
+    }
 }

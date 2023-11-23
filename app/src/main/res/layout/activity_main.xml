@@ -30,8 +30,6 @@
         android:layout_below="@+id/toolbar_box"
         app:queryHint="@string/search_string"
         android:elevation="2dp" />
-    <!-- Page d'accueil -->
-
     <!--    Recyclage view-->
     <ImageView
         android:id="@+id/search_filter"

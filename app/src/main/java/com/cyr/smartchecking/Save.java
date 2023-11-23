@@ -9,7 +9,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.cyr.smartchecking.R;
 
-
 public class Save extends AppCompatActivity {
 
     ImageView user_profile;
@@ -36,8 +35,6 @@ public class Save extends AppCompatActivity {
         user_id.setText(intent.getStringExtra("usercarte"));
         s_people.setText(intent.getStringExtra("nbrpersonne"));
         s_building.setText(intent.getStringExtra("org"));
-
-
 
     }
 

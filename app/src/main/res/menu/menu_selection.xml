@@ -1,7 +1,7 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
 	xmlns:app="http://schemas.android.com/apk/res-auto">
 	<item
-		android:id="@+id/delete_settings"
+		android:id="@+id/supp_settings"
 		android:icon="@drawable/baseline_delete"
 		android:title="@string/delete"
 		app:showAsAction="ifRoom" />

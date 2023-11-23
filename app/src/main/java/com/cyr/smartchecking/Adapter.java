@@ -5,79 +5,77 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
+import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
 
-    String[] name;
-    String[] status;
-    String[] scan;
-    String[] motif;
-    String[] carte;
-    String[] hentre;
-    String[] hsortie;
-    int[] photo;
-    String[] nbrpersonne;
-    String[] org;
-    Context context;
-    LayoutInflater inflater;
+    private List<Person> personList;
+    private View.OnLongClickListener onItemLongClickListener;
+    private List<Integer> selectedItems = new ArrayList<>();
+    private Context context;
 
-    public Adapter (Context context, String[] name, String[] status, String[] scan,
-                    String[] motif, String[] carte, String[] hentre, String[] hsortie,int[] photo, String[] nbrpersonne, String[] org){
+    public void setOnItemLongClickListener(View.OnLongClickListener onItemLongClickListener) {
+        this.onItemLongClickListener = onItemLongClickListener;
+    }
 
-        this.name = name;
-        this.status = status;
-        this.scan = scan;
-        this.motif = motif;
-        this.carte = carte;
-        this.hentre = hentre;
-        this.hsortie = hsortie;
-        this.photo = photo;
-        this.nbrpersonne = nbrpersonne;
-        this.org = org;
+    public Adapter(Context context, List<Person> personList) {
+        this.personList = personList;
         this.context = context;
-        this.inflater = LayoutInflater.from(context);
     }
 
     @NonNull
     @Override
-    public Adapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = inflater.inflate(R.layout.list_item,parent,false);
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
-        holder.username.setText(name[position]);
-        holder.userstatus.setText(status[position]);
-        holder.userscan.setText(scan[position]);
-        holder.usermotif.setText(motif[position]);
-        holder.usercarte.setText(carte[position]);
-        holder.green_time.setText(hentre[position]);
-        holder.red_time.setText(hsortie[position]);
-        holder.userprofile.setImageResource(photo[position]);
+        holder.bindData(position);
     }
 
     @Override
     public int getItemCount() {
-        return name.length;
+        return personList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
+    public void deleteSelectedItems() {
+        List<Person> selectedItems = getSelectedItems();
 
-        TextView username, userstatus;
+        for (Person person : selectedItems) {
+            int position = personList.indexOf(person);
+            if (position >= 0) {
+                personList.remove(position);
+                notifyItemRemoved(position);
+                notifyItemRangeChanged(position, personList.size());
+            }
+        }
+        clearSelection();
+    }
 
-        TextView userscan;
-        TextView usermotif;
-        TextView usercarte;
-        TextView green_time;
-        TextView red_time;
-        ImageView userprofile;
+    public List<Person> getSelectedItems() {
+        List<Person> items = new ArrayList<>();
+        for (int position : selectedItems) {
+            if (position >= 0 && position < personList.size()) {
+                items.add(personList.get(position));
+            }
+        }
+        return items;
+    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+        private TextView username, userstatus, userscan, usermotif, usercarte, green_time, red_time;
+        private ImageView userprofile;
+        public CheckBox checkBox;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -90,22 +88,79 @@ public class Adapter extends RecyclerView.Adapter<Adapter.ViewHolder> {
             green_time = itemView.findViewById(R.id.green_time);
             red_time = itemView.findViewById(R.id.red_time);
             userprofile = itemView.findViewById(R.id.user_profile);
+            checkBox = itemView.findViewById(R.id.checkbox);
 
-            itemView.setOnClickListener(new View.OnClickListener() {
+            itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
+
+            checkBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(context, Save.class);
-                    intent.putExtra("username", name[getAdapterPosition()]);
-                    intent.putExtra("userstatus", status[getAdapterPosition()]);
-                    intent.putExtra("usermotif", motif[getAdapterPosition()]);
-                    intent.putExtra("userprofile", photo[getAdapterPosition()]);
-                    intent.putExtra("usercarte", carte[getAdapterPosition()]);
-                    intent.putExtra("nbrpersonne", nbrpersonne[getAdapterPosition()]);
-                    intent.putExtra("org", org[getAdapterPosition()]);
-                    context.startActivity(intent);
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    int position = getAdapterPosition();
+                    if (position != RecyclerView.NO_POSITION) {
+                        Person person = personList.get(position);
+                        person.setChecked(isChecked);
+                    }
                 }
             });
-
         }
+
+        public void bindData(int position) {
+            Person person = personList.get(position);
+            username.setText(person.getName());
+            userstatus.setText(person.getStatus());
+            userscan.setText(person.getScan());
+            usermotif.setText(person.getMotif());
+            usercarte.setText(person.getCarte());
+            green_time.setText(person.getHentre());
+            red_time.setText(person.getHsortie());
+            userprofile.setImageResource(person.getPhoto());
+            checkBox.setChecked(person.isChecked());
+        }
+
+        @Override
+        public void onClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                Person person = personList.get(position);
+                showUserDetails(person);
+            }
+        }
+
+        @Override
+        public boolean onLongClick(View v) {
+            int position = getAdapterPosition();
+            if (position != RecyclerView.NO_POSITION) {
+                // Gérer l'appui long pour la suppression de l'élément
+                if (onItemLongClickListener != null) {
+                    onItemLongClickListener.onLongClick(v);
+                } else {
+                    // Si l'écouteur n'est pas défini, supprimer l'élément directement
+                    personList.remove(position);
+                    notifyItemRemoved(position);
+                    notifyItemRangeChanged(position, personList.size());
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private void showUserDetails(Person person) {
+            Intent intent = new Intent(context, Save.class);
+            intent.putExtra("userprofile", person.getPhoto());
+            intent.putExtra("username", person.getName());
+            intent.putExtra("userstatus", person.getStatus());
+            intent.putExtra("usermotif", person.getMotif());
+            intent.putExtra("usercarte", person.getCarte());
+            intent.putExtra("nbrpersonne", person.getNbrPersonne());
+            intent.putExtra("org", person.getOrganisation());
+            context.startActivity(intent);
+        }
+    }
+
+    // Ajouter la méthode clearSelection
+    public void clearSelection() {
+        selectedItems.clear();
+        notifyDataSetChanged();
     }
 }
