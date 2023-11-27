@@ -7,12 +7,13 @@
     android:layout_height="wrap_content"
     android:gravity="center">
 
-    <CheckBox
-        android:id="@+id/checkbox"
+    <ImageView
+        android:id="@+id/check_box"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
         android:layout_marginStart="15dp"
+        android:src="@drawable/ic_check_box"
         android:visibility="gone"/>
 
     <LinearLayout
