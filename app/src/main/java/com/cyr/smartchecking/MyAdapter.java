@@ -7,21 +7,19 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
   private List<Person> personList;
-  private View.OnLongClickListener onItemLongClickListener;
   private List<Integer> selectedItems = new ArrayList<>();
   private Context context;
-
-  public void setOnItemLongClickListener(View.OnLongClickListener onItemLongClickListener) {
-    this.onItemLongClickListener = onItemLongClickListener;
-  }
 
   public MyAdapter(Context context, List<Person> personList) {
     this.personList = personList;
@@ -34,12 +32,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     View view = LayoutInflater.from(context).inflate(R.layout.list_item, parent, false);
     return new ViewHolder(view);
   }
-
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
     holder.bindData(position);
   }
-
   @Override
   public int getItemCount() {
     return personList.size();
@@ -54,8 +50,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
     return items;
   }
-
-  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
     private TextView username, userstatus, userscan, usermotif, usercarte, green_time, red_time;
     private ImageView userprofile;
@@ -73,9 +68,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
       userprofile = itemView.findViewById(R.id.user_profile);
 
       itemView.setOnClickListener(this);
+      itemView.setOnLongClickListener(this);
 
     }
-
     public void bindData(int position) {
       Person person = personList.get(position);
       username.setText(person.getName());
@@ -87,7 +82,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
       red_time.setText(person.getHsortie());
       userprofile.setImageResource(person.getPhoto());
     }
-
     @Override
     public void onClick(View v) {
       int position = getAdapterPosition();
@@ -95,6 +89,19 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
         Person person = personList.get(position);
         showUserDetails(person);
       }
+    }
+    @Override
+    public boolean onLongClick(View v) {
+      int position = getAdapterPosition();
+      if (position != RecyclerView.NO_POSITION){
+        Person person = personList.get(position);
+        Intent intent = new Intent(context, MainActivity2.class);
+        context.startActivity(intent);
+
+        Toast.makeText(context, "Appui long sur " + person.getName(), Toast.LENGTH_SHORT).show();
+        return true;
+      }
+      return false;
     }
 
 
@@ -109,5 +116,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
       intent.putExtra("org", person.getOrganisation());
       context.startActivity(intent);
     }
+
+
   }
 }

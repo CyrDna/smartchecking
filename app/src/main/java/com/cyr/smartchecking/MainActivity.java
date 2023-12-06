@@ -74,8 +74,6 @@ public class MainActivity extends AppCompatActivity {
     popupMenu.show();
   }
 
-
-
   private List<Person> generatePersonList() {
     List<Person> persons = new ArrayList<>();
     persons.add(new Person("Pierre", "Etudiant", "Manuel", "Visite", "CNI", "9h", "19h", R.drawable.user_profile, "1", "CERCO"));
