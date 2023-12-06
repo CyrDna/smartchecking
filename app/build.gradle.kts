@@ -47,12 +47,16 @@ dependencies {
     // Logo
     implementation ("de.hdodenhof:circleimageview:3.1.0")
     implementation("androidx.activity:activity-ktx:1.8.1")
-    implementation("androidx.activity:activity:1.8.1")
+    implementation("androidx.activity:activity-ktx:1.8.1")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
+    implementation ("org.greenrobot:greendao:3.3.0")
+    implementation ("androidx.annotation:annotation:1.4.0")
+    implementation ("androidx.appcompat:appcompat:1.3.0")
+    implementation ("com.google.android.material:material:1.4.0")
     // lifecycle
-    implementation ("androidx.lifecycle:lifecycle-viewmodel:2.6.2")
-    implementation ("androidx.lifecycle:lifecycle-livedata:2.6.2")
-    implementation ("androidx.lifecycle:lifecycle-runtime:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-livedata-ktx:2.6.2")
+    implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2")
     // For control over item selection of both touch and mouse driven selection
     implementation("androidx.recyclerview:recyclerview-selection:1.1.0")
     testImplementation("junit:junit:4.13.2")

@@ -11,6 +11,9 @@ public class Person {
   private int photo;
   private String nbrPersonne;
   private String organisation;
+
+
+
   public Person(String name, String status, String scan, String motif,
                 String carte, String hentre, String hsortie, int photo,
                 String nbrPersonne, String organisation) {
@@ -56,5 +59,5 @@ public class Person {
   public String getOrganisation() {
     return organisation;
   }
-}
 
+}

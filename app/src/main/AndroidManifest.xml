@@ -10,9 +10,11 @@
         android:theme="@style/Base.Theme.Monapp"
         tools:targetApi="31">
         <activity
+            android:name=".MainActivity2"
+            android:exported="false" />
+        <activity
             android:name=".Save"
             android:exported="false" />
-
         <activity
             android:name=".MainActivity"
             android:exported="false" />

@@ -1,15 +1,23 @@
 package com.cyr.smartchecking;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.ActionMode;
+import android.view.ContextMenu;
 import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
+import androidx.appcompat.widget.Toolbar;
 
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.ActionMode;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
   private MyAdapter adapter;
   private List<Person> personList;
   private ActionMode actionMode;
+  ImageButton parametre;
+  Toolbar toolbar ;
+
+
+
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -26,63 +39,60 @@ public class MainActivity extends AppCompatActivity {
 
     recyclerView = findViewById(R.id.recycler);
     personList = generatePersonList();
-    adapter = new MyAdapter(this, personList);
 
+    adapter = new MyAdapter(this, personList);
     recyclerView.setAdapter(adapter);
     recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
 
-    adapter.setOnItemLongClickListener(new View.OnLongClickListener() {
+
+    toolbar = findViewById(R.id.toolBarx);
+    setSupportActionBar(toolbar);
+
+    parametre = toolbar.findViewById(R.id.btnSettings);
+    parametre.setOnClickListener(new View.OnClickListener() {
       @Override
-      public boolean onLongClick(View v) {
-        if (actionMode == null) {
-          actionMode = startActionMode(actionModeCallback);
-          v.setSelected(true);
-          adapter.notifyDataSetChanged();
-        }
-        return true;
+      public void onClick(View v) {
+        showPopupMenu(parametre);
       }
     });
+
   }
-
-  private ActionMode.Callback actionModeCallback = new ActionMode.Callback() {
-    @Override
-    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
-      MenuInflater inflater = mode.getMenuInflater();
-      inflater.inflate(R.menu.menu_selection, menu);
-      return true;
-    }
-
-    @Override
-    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
-      return false;
-    }
-
-    @Override
-    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
-      if (item.getItemId() == R.id.menu_supp) {
-        deleteSelectedItems();
-        mode.finish();
-        return true;
+  private void showPopupMenu(View view) {
+    PopupMenu popupMenu = new PopupMenu(this, view);
+    popupMenu.getMenuInflater().inflate(R.menu.menu_select, popupMenu.getMenu());
+    popupMenu.setOnMenuItemClickListener(new PopupMenu.OnMenuItemClickListener() {
+      @Override
+      public boolean onMenuItemClick(MenuItem menuItem) {
+          if (menuItem.getItemId() == R.id.select_settings) {
+              startActivity(new Intent(MainActivity.this, MainActivity2.class));
+              return true;
+          }
+          return false;
       }
-      return false;
-    }
+    });
 
-    @Override
-    public void onDestroyActionMode(ActionMode mode) {
-      actionMode = null;
-      adapter.clearSelection();
-    }
-  };
-
-  private void deleteSelectedItems() {
-    adapter.deleteSelectedItems();
+    popupMenu.show();
   }
+
+
 
   private List<Person> generatePersonList() {
     List<Person> persons = new ArrayList<>();
     persons.add(new Person("Pierre", "Etudiant", "Manuel", "Visite", "CNI", "9h", "19h", R.drawable.user_profile, "1", "CERCO"));
-    persons.add(new Person("Nom2", "Statut2", "Scan2", "Motif2", "Carte2", "HeureEntrée2", "HeureSortie2", R.drawable.user_profile, "NombrePersonne2", "Organisation2"));
-    // Ajoutez d'autres personnes ici...
+    persons.add(new Person("John", "Student", "Manual", "Visit", "ID1", "8h", "18h", R.drawable.user_profile, "1", "CERCO"));
+    persons.add(new Person("Alice", "Employee", "Auto", "Meeting", "ID2", "10h", "20h", R.drawable.user_profile, "2", "ABC Company"));
+    persons.add(new Person("Bob", "Visitor", "Manual", "Appointment", "ID3", "11h", "21h", R.drawable.user_profile, "1", "XYZ Organization"));
+    persons.add(new Person("Eva", "Student", "Auto", "Research", "ID4", "9h", "17h", R.drawable.user_profile, "1", "University"));
+    persons.add(new Person("Mike", "Employee", "Auto", "Conference", "ID5", "8h", "16h", R.drawable.user_profile, "2", "Tech Corp"));
+    persons.add(new Person("Sophie", "Visitor", "Manual", "Event", "ID6", "10h", "22h", R.drawable.user_profile, "1", "Event Planner"));
+    persons.add(new Person("Chris", "Student", "Auto", "Study", "ID7", "9h", "18h", R.drawable.user_profile, "1", "College"));
+    persons.add(new Person("Emma", "Employee", "Manual", "Training", "ID8", "8h", "17h", R.drawable.user_profile, "2", "Training Institute"));
+    persons.add(new Person("Alex", "Visitor", "Auto", "Tour", "ID9", "11h", "20h", R.drawable.user_profile, "1", "Tourism Agency"));
+    persons.add(new Person("Grace", "Student", "Manual", "Project", "ID10", "10h", "19h", R.drawable.user_profile, "1", "Project Group"));
+
     return persons;
   }
+
+
 }
+

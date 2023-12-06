@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.CheckBox;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,13 +18,16 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
   private View.OnLongClickListener onItemLongClickListener;
   private List<Integer> selectedItems = new ArrayList<>();
   private Context context;
+
   public void setOnItemLongClickListener(View.OnLongClickListener onItemLongClickListener) {
     this.onItemLongClickListener = onItemLongClickListener;
   }
+
   public MyAdapter(Context context, List<Person> personList) {
     this.personList = personList;
     this.context = context;
   }
+
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -45,20 +45,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     return personList.size();
   }
 
-  public void deleteSelectedItems() {
-    List<Person> selectedItems = getSelectedItems();
-
-    for (Person person : selectedItems) {
-      int position = personList.indexOf(person);
-      if (position >= 0) {
-        personList.remove(position);
-        notifyItemRemoved(position);
-        notifyItemRangeChanged(position, personList.size());
-      }
-    }
-    clearSelection();
-  }
-
   public List<Person> getSelectedItems() {
     List<Person> items = new ArrayList<>();
     for (int position : selectedItems) {
@@ -68,10 +54,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
     }
     return items;
   }
-  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
+
+  public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
     private TextView username, userstatus, userscan, usermotif, usercarte, green_time, red_time;
-    private ImageView userprofile,checkBox;
+    private ImageView userprofile;
+
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
 
@@ -83,20 +71,9 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
       green_time = itemView.findViewById(R.id.green_time);
       red_time = itemView.findViewById(R.id.red_time);
       userprofile = itemView.findViewById(R.id.user_profile);
-      checkBox = itemView.findViewById(R.id.check_box);
 
       itemView.setOnClickListener(this);
-      itemView.setOnLongClickListener(this);
 
-      checkBox.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          int position = getAdapterPosition();
-          if (position != RecyclerView.NO_POSITION) {
-            Person person = personList.get(position);
-          }
-        }
-      });
     }
 
     public void bindData(int position) {
@@ -120,23 +97,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
       }
     }
 
-    @Override
-    public boolean onLongClick(View v) {
-      int position = getAdapterPosition();
-      if (position != RecyclerView.NO_POSITION) {
-        // Gérer l'appui long pour la suppression de l'élément
-        if (onItemLongClickListener != null) {
-          onItemLongClickListener.onLongClick(v);
-        } else {
-          // Si l'écouteur n'est pas défini, supprimer l'élément directement
-          personList.remove(position);
-          notifyItemRemoved(position);
-          notifyItemRangeChanged(position, personList.size());
-        }
-        return true;
-      }
-      return false;
-    }
 
     private void showUserDetails(Person person) {
       Intent intent = new Intent(context, Save.class);
@@ -149,11 +109,5 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
       intent.putExtra("org", person.getOrganisation());
       context.startActivity(intent);
     }
-  }
-
-  // Ajouter la méthode clearSelection
-  public void clearSelection() {
-    selectedItems.clear();
-    notifyDataSetChanged();
   }
 }

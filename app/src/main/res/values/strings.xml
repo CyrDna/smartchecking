@@ -120,10 +120,12 @@
     <string name="select">Sélectionner tout</string>
     <string name="annuler">Annuler </string>
     <string name="allselect">Tout séléctionner </string>
+    <string name="tselect">Sélectionner tout </string>
     <string name="exportcsv">Exporter en .csv </string>
     <string name="exportpdf">Exporter en .pdf </string>
     <string name="delete">Supprimer </string>
     <string name="back">Back </string>
     <string name="nodata">No Data Found</string>
+    <string name="zero">O</string>
 
 </resources>

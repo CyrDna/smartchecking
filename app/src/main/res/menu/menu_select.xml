@@ -1,11 +1,10 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <item
         android:id="@+id/select_settings"
-        android:title="@string/select_string"
-        app:showAsAction="never" />
+        android:title="@string/select_string" />
     <item
         android:id="@+id/disconnect_settings"
-        android:title="@string/disconnect_string"
-        app:showAsAction="never" />
+        android:title="@string/disconnect_string" />
 </menu>
