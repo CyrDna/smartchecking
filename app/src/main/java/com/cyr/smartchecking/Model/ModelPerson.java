@@ -1,7 +1,8 @@
-package com.cyr.smartchecking;
+package com.cyr.smartchecking.Model;
 
-public class Person {
+public class ModelPerson {
   private String name;
+  private String sname;
   private String status;
   private String scan;
   private String motif;
@@ -14,10 +15,11 @@ public class Person {
 
 
 
-  public Person(String name, String status, String scan, String motif,
-                String carte, String hentre, String hsortie, int photo,
-                String nbrPersonne, String organisation) {
+  public ModelPerson(String name,String sname,String status, String scan, String motif,
+                     String carte, String hentre, String hsortie, int photo,
+                     String nbrPersonne, String organisation) {
     this.name = name;
+    this.sname = sname;
     this.status = status;
     this.scan = scan;
     this.motif = motif;
@@ -31,6 +33,9 @@ public class Person {
 
   public String getName() {
     return name;
+  }
+  public String getSname() {
+    return sname;
   }
   public String getStatus() {
     return status;

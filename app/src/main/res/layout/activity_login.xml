@@ -68,7 +68,6 @@
 			android:hint="@string/email_string"
 			android:inputType="textEmailAddress"
 			android:padding="@dimen/T15" />
-
 		<EditText
 			android:id="@+id/password"
 			android:layout_width="match_parent"
@@ -83,16 +82,16 @@
 		<!---->
 		<Button
 			android:id="@+id/connect"
-			android:layout_width="wrap_content"
-			android:layout_height="wrap_content"
+			android:layout_width="match_parent"
+			android:layout_height="50dp"
+			android:layout_marginStart="@dimen/T15"
 			android:layout_marginTop="@dimen/T10"
-			android:background="@drawable/connect"
-			android:paddingStart="@dimen/T35"
-			android:paddingEnd="@dimen/T35"
+			android:layout_marginEnd="@dimen/T15"
+			android:background="@drawable/seconnect"
 			android:text="@string/continue_string"
 			android:textAllCaps="false"
 			android:textColor="@color/color_blanc"
-			android:textSize="12sp" />
+			android:textSize="14sp" />
 	</LinearLayout>
 
 	<TextView

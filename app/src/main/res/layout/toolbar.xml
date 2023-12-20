@@ -37,12 +37,4 @@
     </RelativeLayout>
 </androidx.appcompat.widget.Toolbar>
 
-    <!--        <ImageButton
-                android:id="@+id/btnBack"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentBottom="true"
-                android:layout_alignParentTop="true"
-                android:background="@android:color/transparent"
-                android:src="@drawable/ic_arrow" />-->
 

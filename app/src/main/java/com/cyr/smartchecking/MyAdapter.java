@@ -12,17 +12,25 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.cyr.smartchecking.Model.ModelPerson;
+
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
-  private List<Person> personList;
+  private List<ModelPerson> modelPersonList;
   private List<Integer> selectedItems = new ArrayList<>();
   private Context context;
 
-  public MyAdapter(Context context, List<Person> personList) {
-    this.personList = personList;
+  public void setfilteredList(List<ModelPerson> filteredList){
+    this.modelPersonList = filteredList;
+    notifyDataSetChanged();
+
+  }
+
+  public MyAdapter(Context context, List<ModelPerson> modelPersonList) {
+    this.modelPersonList = modelPersonList;
     this.context = context;
   }
 
@@ -38,27 +46,28 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
   }
   @Override
   public int getItemCount() {
-    return personList.size();
+    return modelPersonList.size();
   }
 
-  public List<Person> getSelectedItems() {
-    List<Person> items = new ArrayList<>();
+  public List<ModelPerson> getSelectedItems() {
+    List<ModelPerson> items = new ArrayList<>();
     for (int position : selectedItems) {
-      if (position >= 0 && position < personList.size()) {
-        items.add(personList.get(position));
+      if (position >= 0 && position < modelPersonList.size()) {
+        items.add(modelPersonList.get(position));
       }
     }
     return items;
   }
   public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
-    private TextView username, userstatus, userscan, usermotif, usercarte, green_time, red_time;
+    private TextView username, usersname, userstatus, userscan, usermotif, usercarte, green_time, red_time;
     private ImageView userprofile;
 
     public ViewHolder(@NonNull View itemView) {
       super(itemView);
 
       username = itemView.findViewById(R.id.user_name);
+      usersname = itemView.findViewById(R.id.user_sname);
       userstatus = itemView.findViewById(R.id.user_statut);
       userscan = itemView.findViewById(R.id.user_scan);
       usermotif = itemView.findViewById(R.id.motif);
@@ -72,51 +81,51 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     }
     public void bindData(int position) {
-      Person person = personList.get(position);
-      username.setText(person.getName());
-      userstatus.setText(person.getStatus());
-      userscan.setText(person.getScan());
-      usermotif.setText(person.getMotif());
-      usercarte.setText(person.getCarte());
-      green_time.setText(person.getHentre());
-      red_time.setText(person.getHsortie());
-      userprofile.setImageResource(person.getPhoto());
+      ModelPerson modelPerson = modelPersonList.get(position);
+      username.setText(modelPerson.getName());
+      usersname.setText(modelPerson.getSname());
+      userstatus.setText(modelPerson.getStatus());
+      userscan.setText(modelPerson.getScan());
+      usermotif.setText(modelPerson.getMotif());
+      usercarte.setText(modelPerson.getCarte());
+      green_time.setText(modelPerson.getHentre());
+      red_time.setText(modelPerson.getHsortie());
+      userprofile.setImageResource(modelPerson.getPhoto());
     }
     @Override
     public void onClick(View v) {
       int position = getAdapterPosition();
       if (position != RecyclerView.NO_POSITION) {
-        Person person = personList.get(position);
-        showUserDetails(person);
+        ModelPerson modelPerson = modelPersonList.get(position);
+        showUserDetails(modelPerson);
       }
     }
     @Override
     public boolean onLongClick(View v) {
       int position = getAdapterPosition();
       if (position != RecyclerView.NO_POSITION){
-        Person person = personList.get(position);
+        ModelPerson modelPerson = modelPersonList.get(position);
         Intent intent = new Intent(context, MainActivity2.class);
         context.startActivity(intent);
 
-        Toast.makeText(context, "Appui long sur " + person.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Appui long sur " + modelPerson.getName(), Toast.LENGTH_SHORT).show();
         return true;
       }
       return false;
     }
 
-
-    private void showUserDetails(Person person) {
+    private void showUserDetails(ModelPerson modelPerson) {
       Intent intent = new Intent(context, Save.class);
-      intent.putExtra("userprofile", person.getPhoto());
-      intent.putExtra("username", person.getName());
-      intent.putExtra("userstatus", person.getStatus());
-      intent.putExtra("usermotif", person.getMotif());
-      intent.putExtra("usercarte", person.getCarte());
-      intent.putExtra("nbrpersonne", person.getNbrPersonne());
-      intent.putExtra("org", person.getOrganisation());
+      intent.putExtra("userprofile", modelPerson.getPhoto());
+      intent.putExtra("username", modelPerson.getName());
+      intent.putExtra("usersname", modelPerson.getSname());
+      intent.putExtra("userstatus", modelPerson.getStatus());
+      intent.putExtra("usermotif", modelPerson.getMotif());
+      intent.putExtra("usercarte", modelPerson.getCarte());
+      intent.putExtra("nbrpersonne", modelPerson.getNbrPersonne());
+      intent.putExtra("org", modelPerson.getOrganisation());
       context.startActivity(intent);
     }
-
 
   }
 }

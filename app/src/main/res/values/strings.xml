@@ -45,7 +45,8 @@
     <string name="_11___00_ek1_string">11 : 00</string>
     <string name="_12___10_ek1_string">12 : 10</string>
     <string name="motif___travail_string">Motif : Travail</string>
-    <string name="alfred_kouassi_string">Alfred KOUASSI</string>
+    <string name="nom">KOUASSI</string>
+    <string name="prenom">Alfred</string>
     <string name="visiteur_string">Visiteur</string>
     <string name="id_string">Pas d ID</string>
     <string name="enter_string">Entrer :</string>
@@ -73,7 +74,7 @@
     <string name="_11___00_ek4_string">11 : 00</string>
     <string name="_12___10_ek4_string">12 : 10</string>
     <string name="motif___visite_ek2_string">Motif : Visite</string>
-    <string name="search_string">Rechercher un nom, numero d\'ID, etc…</string>
+
     <string name="smartchecking_ek2_string">SmartChecking</string>
     <string name="select_string">Sélectionner</string>
     <string name="disconnect_string">Se déconnecter</string>
@@ -127,5 +128,11 @@
     <string name="back">Back </string>
     <string name="nodata">No Data Found</string>
     <string name="zero">O</string>
+
+    <string name="search_string">Rechercher un nom, numero d\'ID, etc…</string>
+    <string name="search_hint">Rechercher un nom, numero d\'ID, etc…</string>
+    <string name="update">Modification</string>
+    <string name="save">Enregistrer une visite </string>
+
 
 </resources>

@@ -1,0 +1,16 @@
+<resources>
+    <string-array name="sexes">
+        <item>Masculin</item>
+        <item>Féminin</item>
+    </string-array>
+
+    <string-array name="motifs">
+        <item>Taff</item>
+        <item>Étude</item>
+    </string-array>
+
+    <string-array name="types_de_cartes">
+        <item>CNI</item>
+        <item>Passeport</item>
+    </string-array>
+</resources>

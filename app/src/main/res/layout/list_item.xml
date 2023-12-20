@@ -50,12 +50,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="15dp"
-                    android:text="@string/alfred_kouassi_string"
+                    android:text="@string/prenom"
                     android:textColor="@color/green_sombre"
                     android:textSize="20sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/user_profile"
                     app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/user_sname"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/nom"
+                    android:textColor="@color/green_sombre"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginStart="4dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/user_name"
+                    app:layout_constraintStart_toEndOf="@+id/user_name"
+                    app:layout_constraintTop_toTopOf="@+id/user_name" />
                 <TextView
                     android:id="@+id/user_statut"
                     android:layout_width="wrap_content"
@@ -111,12 +124,15 @@
                     app:layout_constraintBottom_toBottomOf="@+id/user_motif"
                     app:layout_constraintStart_toEndOf="@+id/user_motif"
                     app:layout_constraintTop_toTopOf="@+id/user_motif" />
-                <ImageView
-                    android:id="@+id/user_parameter"
+
+                <ImageButton
+                    android:id="@+id/btn_parametre"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
+                    android:background="@color/transparent"
                     android:src="@drawable/ic_parametre"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
