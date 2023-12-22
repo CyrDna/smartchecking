@@ -9,23 +9,23 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
-import com.cyr.smartchecking.Model.ModelPerson;
+import java.lang.ref.WeakReference;
+import com.cyr.smartchecking.Room.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
- List<ModelPerson> modelPersonList;
+ private List<Person> personList;
  MainActivity2 mainActivity2;
+ private WeakReference<MainActivity2> mainActivity2Ref;
 
-  public MyAdapter2(ArrayList<ModelPerson> modelPersonList, MainActivity2 mainActivity2) {
-    this.modelPersonList = modelPersonList;
-    this.mainActivity2 = mainActivity2;
-
-  }
-  public void setfilteredList(List<ModelPerson> filteredList){
-      this.modelPersonList = filteredList;
+ public MyAdapter2(List<Person> personList, MainActivity2 mainActivity2) {
+     this.personList = personList;
+     this.mainActivity2Ref = new WeakReference<>(mainActivity2);
+ }
+  public void setfilteredList(List<Person> filteredList){
+      this.personList = filteredList;
       notifyDataSetChanged();
   }
 
@@ -38,32 +38,37 @@ public class MyAdapter2 extends RecyclerView.Adapter<MyAdapter2.ViewHolder> {
   }
   @Override
   public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-    holder.username.setText(modelPersonList.get(position).getName());
-    holder.usersname.setText(modelPersonList.get(position).getSname());
-    holder.userstatus.setText(modelPersonList.get(position).getStatus());
-    holder.userscan.setText(modelPersonList.get(position).getScan());
-    holder.usermotif.setText(modelPersonList.get(position).getMotif());
-    holder.usercarte.setText(modelPersonList.get(position).getCarte());
-    holder.green_time.setText(modelPersonList.get(position).getHentre());
-    holder.red_time.setText(modelPersonList.get(position).getHsortie());
-    holder.userprofile.setImageResource(modelPersonList.get(position).getPhoto());
-    holder.checkBox.setChecked(mainActivity2.selectionList.contains(modelPersonList.get(position)));
-    if (mainActivity2.isContexualModeEnabled){
-        holder.checkBox.setVisibility(View.VISIBLE);
-        holder.checkBox.setChecked(false);
+    holder.username.setText(personList.get(position).getName());
+    holder.usersname.setText(personList.get(position).getSname());
+    holder.userstatus.setText(personList.get(position).getStatus());
+    holder.userscan.setText(personList.get(position).getScan());
+    holder.usermotif.setText(personList.get(position).getMotif());
+    holder.usercarte.setText(personList.get(position).getCarte());
+    holder.green_time.setText(personList.get(position).getHentre());
+    holder.red_time.setText(personList.get(position).getHsortie());
+    holder.userprofile.setImageResource(personList.get(position).getPhoto());
+
+    MainActivity2 mainActivity2 = mainActivity2Ref.get();
+    if (mainActivity2 != null) {
+        holder.checkBox.setChecked(mainActivity2.selectionList.contains(personList.get(position)));
+        if (mainActivity2.isContexualModeEnabled) {
+            holder.checkBox.setVisibility(View.VISIBLE);
+            holder.checkBox.setChecked(false);
+        }
     }
 
   }
   @Override
   public int getItemCount() {
-    return modelPersonList.size();
+    return personList.size();
   }
-  public void RemoveItem(ArrayList<ModelPerson> selectionList) {
+  public void RemoveItem(ArrayList<Person> selectionList) {
       for (int i = 0;i < selectionList.size(); i++){
-          modelPersonList.remove(selectionList.get(i));
+          personList.remove(selectionList.get(i));
           notifyDataSetChanged();
         }
       // Réinitialiser l'état dans MainActivity2
+
       mainActivity2.resetState();
     }
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {

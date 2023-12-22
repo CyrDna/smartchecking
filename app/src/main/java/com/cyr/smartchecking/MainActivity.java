@@ -12,26 +12,29 @@ import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cyr.smartchecking.Model.ModelPerson;
+import com.cyr.smartchecking.Room.Person;
+import com.cyr.smartchecking.Room.PersonDAO;
+import com.cyr.smartchecking.Room.PersonDatabase;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-  RecyclerView recyclerView;
+  private RecyclerView recyclerView;
   private static MyAdapter adapter;
-
-  ImageButton parametre;
-  ImageButton btnItem;
-  Toolbar toolbar ;
+  private ImageButton parametre;
+  private ImageButton btnItem;
+  private Toolbar toolbar;
   private EditText editTextSearch;
   private ImageView searchIcon;
   private ImageView filterIcon;
-  private List<ModelPerson> modelPersonList;
-
+  private ArrayList<Person> personList;
+  private PersonDatabase personDatabase;
+  private PersonDAO personDAO;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
@@ -39,22 +42,23 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     recyclerView = findViewById(R.id.recycler);
-    modelPersonList = generatePersonList();
+    personList = new ArrayList<>(); // Initialize an empty list for now
 
-    adapter = new MyAdapter(this, modelPersonList);
+    adapter = new MyAdapter(this, personList);
     recyclerView.setAdapter(adapter);
     recyclerView.setLayoutManager(new GridLayoutManager(this, 1));
-    //Initilisation des vue pour la barre de recherche
+
+    // Initialize views for the search bar
     editTextSearch = findViewById(R.id.editTextSearch);
     searchIcon = findViewById(R.id.searchIcon);
     filterIcon = findViewById(R.id.filter);
-    searchIcon.setOnClickListener(new View.OnClickListener(){
+    searchIcon.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         performSearch();
       }
     });
-    filterIcon.setOnClickListener(new View.OnClickListener(){
+    filterIcon.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
         filtration();
@@ -71,15 +75,37 @@ public class MainActivity extends AppCompatActivity {
         showPopupMenu(parametre);
       }
     });
-	btnItem = findViewById(R.id.btnItem);
- 	btnItem.setOnClickListener(new View.OnClickListener() {
-		  @Override
-		  public void onClick(View v) {
-              Intent intent = new Intent(MainActivity.this, Formulaire.class);
-              startActivity(intent);
-		  }
-	  });
+
+    // Initialize your database
+    personDatabase = PersonDatabase.getInstance(this);
+
+    btnItem = findViewById(R.id.btnItem);
+    btnItem.setOnClickListener(new View.OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        Intent intent = new Intent(MainActivity.this, Formulaire.class);
+        startActivity(intent);
+      }
+    });
+
+    // Fetch data from the database and update the adapter
+    fetchDataFromDatabase();
   }
+
+  private void fetchDataFromDatabase() {
+    // Observe the LiveData returned by getAllPersons()
+    personDatabase.getDao().getAllPersons().observe(this, new Observer<List<Person>>() {
+      @Override
+      public void onChanged(List<Person> persons) {
+        // Update the adapter with the fetched data
+        personList.clear();
+        personList.addAll(persons);
+        adapter.notifyDataSetChanged();
+        adapter.setPersonList(persons);
+      }
+    });
+  }
+
   private void showPopupMenu(View view) {
     PopupMenu popupMenu = new PopupMenu(this, view);
     popupMenu.getMenuInflater().inflate(R.menu.menu_select, popupMenu.getMenu());
@@ -96,29 +122,14 @@ public class MainActivity extends AppCompatActivity {
 
     popupMenu.show();
   }
-  private List<ModelPerson> generatePersonList() {
-    List<ModelPerson> modelPeople = new ArrayList<>();
-    modelPeople.add(new ModelPerson("Pierre", "BEHANZIN","Etudiant", "Manuel", "Visite", "CNI", "9h", "19h", R.drawable.user_profile, "1", "CERCO"));
-    modelPeople.add(new ModelPerson("John","BEHANZIN" ,"Student", "Manual", "Visit", "ID1", "8h", "18h", R.drawable.user_profile, "1", "CERCO"));
-    modelPeople.add(new ModelPerson("Alice", "BEHANZIN" ,"Employee", "Auto", "Meeting", "ID2", "10h", "20h", R.drawable.user_profile, "2", "ABC Company"));
-    modelPeople.add(new ModelPerson("Bob", "DONA" ,"Visitor", "Manual", "Appointment", "ID3", "11h", "21h", R.drawable.user_profile, "1", "XYZ Organization"));
-    modelPeople.add(new ModelPerson("Eva", "DONA" ,"Student", "Auto", "Research", "ID4", "9h", "17h", R.drawable.user_profile, "1", "University"));
-    modelPeople.add(new ModelPerson("Mike", "DONA" ,"Employee", "Auto", "Conference", "ID5", "8h", "16h", R.drawable.user_profile, "2", "Tech Corp"));
-    modelPeople.add(new ModelPerson("Sophie","DONA" , "Visitor", "Manual", "Event", "ID6", "10h", "22h", R.drawable.user_profile, "1", "Event Planner"));
-    modelPeople.add(new ModelPerson("Chris", "DONA" ,"Student", "Auto", "Study", "ID7", "9h", "18h", R.drawable.user_profile, "1", "College"));
-    modelPeople.add(new ModelPerson("Emma", "DONA" ,"Employee", "Manual", "Training", "ID8", "8h", "17h", R.drawable.user_profile, "2", "Training Institute"));
-    return modelPeople;
-  }
+
   private void performSearch() {
     String searchText = editTextSearch.getText().toString().toLowerCase().trim();
 
-    List<ModelPerson> filteredList = new ArrayList<>();
-    for (ModelPerson modelPerson : modelPersonList) {
-      if (modelPerson.getName().toLowerCase().contains(searchText)) {
-        filteredList.add(modelPerson);
-      }
-      if (modelPerson.getSname().toLowerCase().contains(searchText)){
-        filteredList.add(modelPerson);
+    List<Person> filteredList = new ArrayList<>();
+    for (Person person : personList) {
+      if (person.getName().toLowerCase().contains(searchText) || person.getSname().toLowerCase().contains(searchText)) {
+        filteredList.add(person);
       }
     }
 
@@ -130,9 +141,6 @@ public class MainActivity extends AppCompatActivity {
   }
 
   private void filtration() {
-        // Implement logic to open filter options
-    }
+    // Implement logic to open filter options
+  }
 }
-
-
-

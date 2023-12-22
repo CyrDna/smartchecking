@@ -12,7 +12,7 @@ import com.cyr.smartchecking.R;
 public class Save extends AppCompatActivity {
 
     ImageView user_profile;
-    TextView user_name, user_statut, user_motif, user_id, s_people, s_building;
+    TextView user_name, user_sname, user_statut, user_motif, user_id, s_people, s_building;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,6 +20,7 @@ public class Save extends AppCompatActivity {
 
         user_profile = findViewById(R.id.user_profile);
         user_name = findViewById(R.id.user_name);
+        user_sname = findViewById(R.id.user_sname);
         user_statut = findViewById(R.id.user_statut);
         user_motif = findViewById(R.id.motif);
         user_id = findViewById(R.id.user_id);
@@ -30,6 +31,7 @@ public class Save extends AppCompatActivity {
 
         user_profile.setImageResource(intent.getIntExtra("userprofile",0));
         user_name.setText(intent.getStringExtra("username"));
+        user_sname.setText(intent.getStringExtra("usersname"));
         user_statut.setText(intent.getStringExtra("userstatus"));
         user_motif.setText(intent.getStringExtra("usermotif"));
         user_id.setText(intent.getStringExtra("usercarte"));

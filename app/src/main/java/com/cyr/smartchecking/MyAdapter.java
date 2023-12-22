@@ -12,28 +12,29 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.cyr.smartchecking.Model.ModelPerson;
+import com.cyr.smartchecking.Room.Person;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
-
-  private List<ModelPerson> modelPersonList;
   private List<Integer> selectedItems = new ArrayList<>();
-  private Context context;
 
-  public void setfilteredList(List<ModelPerson> filteredList){
-    this.modelPersonList = filteredList;
+  public void setfilteredList(List<Person> filteredList){
+    this.personList = filteredList;
     notifyDataSetChanged();
-
   }
 
-  public MyAdapter(Context context, List<ModelPerson> modelPersonList) {
-    this.modelPersonList = modelPersonList;
+  private List<Person> personList = new ArrayList<>();  // Initialisez avec une liste vide par défaut
+  private Context context;
+  public MyAdapter(Context context, List<Person> personList) {
+    this.personList = personList;
     this.context = context;
   }
-
+  public void setPersonList(List<Person> persons) {
+    this.personList = persons;
+    notifyDataSetChanged();
+  }
   @NonNull
   @Override
   public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -46,14 +47,14 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
   }
   @Override
   public int getItemCount() {
-    return modelPersonList.size();
+    return personList.size();
   }
 
-  public List<ModelPerson> getSelectedItems() {
-    List<ModelPerson> items = new ArrayList<>();
+  public List<Person> getSelectedItems() {
+    List<Person> items = new ArrayList<>();
     for (int position : selectedItems) {
-      if (position >= 0 && position < modelPersonList.size()) {
-        items.add(modelPersonList.get(position));
+      if (position >= 0 && position < personList.size()) {
+        items.add(personList.get(position));
       }
     }
     return items;
@@ -81,49 +82,49 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.ViewHolder> {
 
     }
     public void bindData(int position) {
-      ModelPerson modelPerson = modelPersonList.get(position);
-      username.setText(modelPerson.getName());
-      usersname.setText(modelPerson.getSname());
-      userstatus.setText(modelPerson.getStatus());
-      userscan.setText(modelPerson.getScan());
-      usermotif.setText(modelPerson.getMotif());
-      usercarte.setText(modelPerson.getCarte());
-      green_time.setText(modelPerson.getHentre());
-      red_time.setText(modelPerson.getHsortie());
-      userprofile.setImageResource(modelPerson.getPhoto());
+      Person person = personList.get(position);
+      username.setText(person.getName());
+      usersname.setText(person.getSname());
+      userstatus.setText(person.getStatus());
+      userscan.setText(person.getScan());
+      usermotif.setText(person.getMotif());
+      usercarte.setText(person.getCarte());
+      green_time.setText(person.getHentre());
+      red_time.setText(person.getHsortie());
+      userprofile.setImageResource(person.getPhoto());
     }
     @Override
     public void onClick(View v) {
       int position = getAdapterPosition();
       if (position != RecyclerView.NO_POSITION) {
-        ModelPerson modelPerson = modelPersonList.get(position);
-        showUserDetails(modelPerson);
+        Person person = personList.get(position);
+        showUserDetails(person);
       }
     }
     @Override
     public boolean onLongClick(View v) {
       int position = getAdapterPosition();
       if (position != RecyclerView.NO_POSITION){
-        ModelPerson modelPerson = modelPersonList.get(position);
+        Person person = personList.get(position);
         Intent intent = new Intent(context, MainActivity2.class);
         context.startActivity(intent);
 
-        Toast.makeText(context, "Appui long sur " + modelPerson.getName(), Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, "Appui long sur " + person.getName(), Toast.LENGTH_SHORT).show();
         return true;
       }
       return false;
     }
 
-    private void showUserDetails(ModelPerson modelPerson) {
+    private void showUserDetails(Person person) {
       Intent intent = new Intent(context, Save.class);
-      intent.putExtra("userprofile", modelPerson.getPhoto());
-      intent.putExtra("username", modelPerson.getName());
-      intent.putExtra("usersname", modelPerson.getSname());
-      intent.putExtra("userstatus", modelPerson.getStatus());
-      intent.putExtra("usermotif", modelPerson.getMotif());
-      intent.putExtra("usercarte", modelPerson.getCarte());
-      intent.putExtra("nbrpersonne", modelPerson.getNbrPersonne());
-      intent.putExtra("org", modelPerson.getOrganisation());
+      intent.putExtra("userprofile", person.getPhoto());
+      intent.putExtra("username", person.getName());
+      intent.putExtra("usersname", person.getSname());
+      intent.putExtra("userstatus", person.getStatus());
+      intent.putExtra("usermotif", person.getMotif());
+      intent.putExtra("usercarte", person.getCarte());
+      intent.putExtra("nbrpersonne", person.getNbrPersonne());
+      intent.putExtra("org", person.getOrganisation());
       context.startActivity(intent);
     }
 

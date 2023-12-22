@@ -147,6 +147,45 @@
                         android:layout_weight="1"
                         android:background="@drawable/border_green" />
                 </com.google.android.material.textfield.TextInputLayout>
+                <!-- Date de livraison -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_livr"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/datelivr"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/border_green"
+                        android:inputType="date"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <!-- Date d' expiration  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/date_expir"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/dateexpir"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/border_green"
+                        android:inputType="date"/>
+                </com.google.android.material.textfield.TextInputLayout>
+                <!-- Visiteur  -->
+                <com.google.android.material.textfield.TextInputLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/nbr_visitor"
+                    style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox">
+                    <com.google.android.material.textfield.TextInputEditText
+                        android:id="@+id/visitor"
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:background="@drawable/border_green"
+                        android:inputType="number"/>
+                </com.google.android.material.textfield.TextInputLayout>
             </LinearLayout>
             <!-- Box des boutons -->
             <LinearLayout
